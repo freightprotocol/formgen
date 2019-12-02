@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="/image-document-styles.css"/>
+    <title>{title}</title>
+</head>
+<body style="padding: 0 !important; margin: 0 !important;">
+
+    <img src="" alt="" class="signature" id="document-image" style="max-width: 100%; width: 100%; height: 100%;" />
+
+    <script>
+        var data =  tryParseJSON(decodeURI("{{ clientData }}"));
+        console.log(data);
+        addSrc(getElementById('document-image'), `${data.Base64}` );
+
+        function addSrc(element, content) {
+            element.setAttribute('src', replaceAll(content, "&#x3D;", '='));
+        }
+        function addSrc(element, content) {
+            element.setAttribute('src', replaceAll(content, "&#x3D;", '='));
+        }
+        function replaceAll(str, find, replace) {
+            return str.replace(new RegExp(find, 'g'), replace);
+        }
+        function getElementById(id) {
+            return document.getElementById(id);
+        }
+        function tryParseJSON (jsonString){
+            try {
+                var o = JSON.parse(jsonString);
+
+                if (o && typeof o === "object") {
+                    return o;
+                }
+            }
+            catch (e) { }
+            return null;
+        }
+    </script>
+</body>
+</html>
+

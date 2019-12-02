@@ -1,0 +1,170 @@
+{
+    "id": null,
+    "shipmentDate": "2018-08-01T21:52:03.760017Z",
+    "shipFrom": {
+      "idNumber": null,
+      "id": "5b587ed3ce143a20f8fd1dac",
+      "name": "Micahs House",
+      "line1": "7384 AppleGate Ln",
+      "line2": null,
+      "city": "Chattanooga",
+      "state": "TN",
+      "zip": "37421",
+      "country": "US",
+      "fob": false
+    },
+    "shipTo": {
+      "idNumber": null,
+      "id": "5b59cc553c87e20001f069cb",
+      "name": "Will's House",
+      "line1": "2050 Harle Ave NW",
+      "line2": null,
+      "city": "Cleveland",
+      "state": "TN",
+      "zip": "37311",
+      "country": "United States",
+      "fob": true
+    },
+    "shipToLocationNumber": "5b59cc553c87e20001f069cb",
+    "thirdPartyChargesTo": {
+      "idNumber": null,
+      "id": null,
+      "name": "Block Array Inc",
+      "line1": "50 East Main Street",
+      "line2": "",
+      "city": "Chattanooga",
+      "state": "TN",
+      "zip": "37408",
+      "country": "US",
+      "fob": false
+    },
+    "thirdPartySpecialInstructions": null,
+    "bolNumber": "12341234",
+    "carrier": "Cool Freight Inc.",
+    "trailerNumber": "5407-FR",
+    "sealNumbers": ["1234576890"],
+    "freightChargeTerms": {
+      "collect": false,
+      "prepaid": true,
+      "thirdParty": false
+    },
+    "customerOrderInfo": [
+        {
+            "id": null,
+            "orderNumber": 1234567890,
+            "numberOfPackages": 1,
+            "weight": 14,
+            "palletSlip": true,
+            "additionalInfo": "lorem ipsum dolor sit amet"
+        },
+        {
+            "id": null,
+            "orderNumber": 1234567890,
+            "numberOfPackages": 1,
+            "weight": 14,
+            "palletSlip": false,
+            "additionalInfo": "lorem ipsum dolor sit amet"
+        },
+        {
+            "id": null,
+            "orderNumber": 1234567890,
+            "numberOfPackages": 1,
+            "weight": 14,
+            "palletSlip": false,
+            "additionalInfo": "lorem ipsum dolor sit amet"
+        },
+        {
+            "id": null,
+            "orderNumber": 1234567890,
+            "numberOfPackages": 1,
+            "weight": 14,
+            "palletSlip": true,
+            "additionalInfo": "lorem ipsum dolor sit amet"
+        },
+        {
+            "id": null,
+            "orderNumber": 1234567890,
+            "numberOfPackages": 1,
+            "weight": 14,
+            "palletSlip": false,
+            "additionalInfo": "lorem ipsum dolor sit amet"
+        }
+    ],
+    "carrierInfo": [
+      {
+        "id": null,
+        "handlingUnitQty": 1,
+        "handlingUnitType": "2",
+        "packageQty": 1,
+        "packageType": "1",
+        "weight": 14,
+        "hm": true,
+        "description": "Ammo",
+        "nmfcNumber": "1234",
+        "nmfcClass": "II"
+      },
+      {
+        "id": null,
+        "handlingUnitQty": 1,
+        "handlingUnitType": "2",
+        "packageQty": 1,
+        "packageType": "1",
+        "weight": 14,
+        "hm": true,
+        "description": "Ammo",
+        "nmfcNumber": "1234",
+        "nmfcClass": "II"
+      },
+      {
+        "id": null,
+        "handlingUnitQty": 1,
+        "handlingUnitType": "2",
+        "packageQty": 1,
+        "packageType": "1",
+        "weight": 14,
+        "hm": false,
+        "description": "Ammo",
+        "nmfcNumber": "1234",
+        "nmfcClass": "II"
+      },
+      {
+        "id": null,
+        "handlingUnitQty": 1,
+        "handlingUnitType": "2",
+        "packageQty": 1,
+        "packageType": "1",
+        "weight": 14,
+        "hm": true,
+        "description": "Ammo",
+        "nmfcNumber": "1234",
+        "nmfcClass": "II"
+      },
+      {
+        "id": null,
+        "handlingUnitQty": 1,
+        "handlingUnitType": "2",
+        "packageQty": 1,
+        "packageType": "1",
+        "weight": 14,
+        "hm": false,
+        "description": "Ammo",
+        "nmfcNumber": "1234",
+        "nmfcClass": "II"
+      }
+    ],
+    "codAmount": 0,
+    "feeTerms": {
+      "collect": false,
+      "prepaid": true,
+      "customerCheckAvailable": true,
+      "trailerLoadedByShipper": true,
+      "trailerLoadedByDriver": false,
+      "countedByShipper": true,
+      "countedByDriverPallets": false,
+      "countedByDriverPieces": false,
+      "shipperSignature": null,
+      "shipperSignDate": "0001-01-01T00:00:00",
+      "carrierSignature": null,
+      "carrierPickupDate": "0001-01-01T00:00:00"
+    }
+  }

@@ -1,0 +1,284 @@
+html, 
+body {
+     font-family: 'Helvetica Neue';
+}
+
+.data-table {
+    width: 100%;
+}
+
+.blocked-col {
+    background-color: grey;
+}
+
+.customer-order-info .content .data-table{
+    height: 160px;
+}
+
+.carrier-info .content .data-table{
+    height: 195px;
+}
+
+.data-table,
+.data-table tr,
+.data-table tr th,
+.data-table tr td {
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+.align-left {
+    text-align: left;
+}
+
+.align-middle {
+    text-align: center;
+}
+
+.align-right {
+    text-align: right;
+}
+
+.boxed {
+    border: solid 1px black;
+    box-sizing: border-box;
+}
+
+.outlined {
+    outline: solid 1px black;
+}
+
+.customer-order-info .content {
+    height: 180px;
+}
+
+.customer-order-info-sub .content {
+    height: 465px;
+}
+
+.carrier-info .content {
+    height: 220px;
+}
+
+.carrier-info-sub .content {
+    height: 480px;
+}
+
+/* .customer-order-info-sub .content .data-table{
+    height: 160px;
+}
+
+.carrier-info-sub .content .data-table{
+    height: 195px;
+} */
+
+.clearfix::after { 
+   content: " ";
+   display: block; 
+   height: 0; 
+   clear: both;
+}
+
+.circled {
+    border-radius: 100%;
+    border: 1px solid black;
+    width: 14px;
+    margin: auto;
+}
+
+.bol-number-section,
+.scac-pro-number-section {
+    height: 105px;
+}
+
+.driver-details-section{
+    height: 75px;    
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: stretch;
+}
+
+.flex-vert {
+    flex-direction: column;
+    justify-content: space-between;
+    display: flex;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+.flex-2 {
+    flex: 2;
+}
+
+.flex-3 {
+    flex: 3;
+}
+
+.flex-4 {
+    flex: 4;
+}
+
+.flex-5 {
+    flex: 5;
+}
+
+.flex-6 {
+    flex: 6;
+}
+
+.flex-7 {
+    flex: 7;
+}
+
+.flex-8 {
+    flex: 8;
+}
+
+.flex-9 {
+    flex: 9;
+}
+
+.footer-row {
+    display: block;
+    width: 100%;
+}
+
+.footer-box {
+    height: 60px;
+    padding: 4px;
+}
+
+.footer-box-short {
+    height: 30px;
+    vertical-align: top;
+}
+
+.col-60 {
+    width: 60%;
+}
+
+.col-40 {
+    width: 40%;
+}
+
+.col-33 {
+    width: 33.3%;
+}
+
+.terms-section {
+    height: 85px;
+}
+
+.ship-from-section,
+.ship-to-section {
+    height: 110px;
+}
+
+.bill-to-section {
+    height: 150px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.half {
+    width: 50%;
+}
+
+.left-side {
+    width: 60%;
+}
+
+.right-side {
+    width: 40%;
+}
+
+.third {
+    width: 33%;
+}
+
+.no-vert-padding {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.section-header {
+    padding: 4px;
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+
+.signature-row > div {
+    height: 80px;
+}
+
+.small-text {
+    font-size: 12px;
+}
+
+.medium-text {
+    line-height: 14px;
+    line-height: 18px;
+}
+
+.medium-line {
+    line-height: 18px;
+}
+
+.title-bar {
+    border: solid 1px black;
+    border-bottom: none;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.title-bar div {
+    width: 32.8%;
+}
+
+.parties, 
+.barcode-and-trailers,
+.content{
+    display: inline-block;
+}
+
+/**
+ * colors
+ */
+ 
+.green {
+    background-color: green;
+}
+
+.purple {
+    background-color: purple;
+}
+
+.yellow {
+    background-color: yellow;
+}
+
+.blue {
+    background-color: blue;
+}
+
+.red {
+    background-color: red;
+}

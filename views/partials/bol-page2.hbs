@@ -1,0 +1,112 @@
+<div>
+    <div class="title boxed">
+        <div class='title-bar clearfix'>
+            <div class='left align-left small-text medium-line bol-date' style="margin-left: 5px; margin-right: auto">Date:</span></div>
+            <div class='left align-middle center'>SUPPLEMENT TO THE BILL OF LADING</div>
+            <div class='right align-right small-text medium-line' style="padding-right: 5px;">
+                <div style="text-align: right; width: 100%;">Page: {{pageNumber}}</div>
+                <div style="text-align: right; width: 100%;" class="bol-number">BoL Number:</div>
+            </div>
+        </div>
+    </div>
+    <div class="boxed" style="border-bottom: none">
+        <div class="content full-width">
+            <div class="">
+                <div class='section-header small-text'>CUSTOMER ORDER INFORMATION</div>
+                <table class="data-table small-text">
+                    <tr style="height:25px">
+                        <th>CUSTOMER ORDER NUMBER</th> 
+                        <th># PKGS</th> 
+                        <th>WEIGHT</th> 
+                        <th colspan="2">PALLET/SLIP</th> 
+                        <th>ADDITIONAL SHIPPER INFO</th> 
+                    </tr>
+                    {{#each CustomerOrderInfo}}
+                        <tr class="customer-info-row" style="height:26px">
+                            <td class="order-info-order-number align-middle">{{OrderNumber}}</td> 
+                            <td class="order-info-number-pkgs">{{Quantity}}</td>
+                            <td class="order-info-weight">{{Weight}}</td> 
+                            <td class="order-info-pallet-yes align-middle">
+                                {{#if PalletSlip}}
+                                    <div class="circled">Y</div>
+                                {{else}}
+                                    <div>Y</div>
+                                {{/if}}
+                            </td> 
+                            <td class="order-info-pallet-no align-middle">
+                                {{#if PalletSlip}}
+                                    <div>N</div>
+                                {{else}}
+                                    <div class="circled">N</div>
+                                {{/if}}
+                            </td> 
+                            <td class="order-info-additional-info">{{AdditionalShipperInfo}}</td> 
+                        </tr>
+                    {{/each}}
+                    <tr style="height:25px">
+                        <td>PAGE TOTAL</td> 
+                        <td id="order-info-pkgs-total">{{CioTotals.PackagesTotal}}</td> 
+                        <td id="order-info-weight-total">{{CioTotals.WeightTotal}}</td> 
+                        <td class="blocked-col"></td> 
+                        <td class="blocked-col"></td> 
+                        <td class="blocked-col"></td> 
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="boxed" style="border-top: none">
+        <div class="content full-width">
+            <div class="">
+                <div class='section-header small-text'>CARRIER INFORMATION</div>
+                <table class="data-table small-text no-vert-padding">
+                    <tr style="height:25px">
+                        <th colspan="2">HANDLING UNIT</th> 
+                        <th colspan="2">PACKAGE</th> 
+                        <th rowspan="2">WEIGHT</th> 
+                        <th rowspan="2">H.M.</th> 
+                        <th rowspan="2">COMMODITY DESCRIPTION</th> 
+                        <th colspan="2">PACKAGE</th> 
+                    </tr>
+                    <tr style="height:25px">
+                        <th>QTY</th> 
+                        <th>TYPE</th> 
+                        <th>QTY</th> 
+                        <th>TYPE</th>
+                        <th>NMFC #</th> 
+                        <th>CLASS</th> 
+                    </tr>
+                    {{#each CarrierInfo}}
+                        <tr class="carrier-info-row" style="height:26px">
+                            <td class="carrier-info-handling-qty">{{HandlingUnitQty}}</td>
+                            <td class="carrier-info-handling-type align-middle">{{HandlingUnitType}}</td>
+                            <td class="carrier-info-pkg-qty">{{PackageQty}}</td>
+                            <td class="carrier-info-pkg-type align-middle">{{PackageType}}</td>
+                            <td class="carrier-info-weight">{{Weight}}</td>
+                            <td class="carrier-info-hazmat align-middle">
+                                {{#if HM}}
+                                    X
+                                {{/if}}
+                            </td> 
+                            <td class="carrier-info-description">{{Description}}</td>
+                            <td class="carrier-info-nmfc-number align-middle">{{NMFCNumber}}</td>
+                            <td class="carrier-info-nmfc-class align-middle">{{NMFCClass}}</td>
+                        </tr>
+                    {{/each}}
+                    <tr style="height:25px">
+                        <td id="carrier-info-units-total">{{CiTotals.HandlingUnitQtyTotal}}</td> 
+                        <td class="blocked-col"></td> 
+                        <td id="carrier-info-pkgs-total">{{CiTotals.PackageQtyTotal}}</td> 
+                        <td class="blocked-col"></td> 
+                        <td id="carrier-info-weight-total">{{CiTotals.WeightTotal}}</td> 
+                        <td class="blocked-col align-middle"></td> 
+                        <td class="align-middle">PAGE SUBTOTAL</td> 
+                        <td class="blocked-col"></td> 
+                        <td class="blocked-col"></td> 
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="height: 0px"></div>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="/load-confirmation-styles.css"/>
+    <title>{title}</title>
+</head>
+<body>
+    <div class="container flex-1 column no-padding">
+        <div class="container header flex-1 no-padding">
+            <div class="container parties flex-1 column no-padding">
+                <div class="container flex-1 from">
+                    <div class="logo container">
+                        {{!-- <img class="no-padding" src="https://cdn-images-1.medium.com/max/1600/1*4yolWOAj-RbnGHr4yA88Hg.png" alt=""> --}}
+                        <img id="issuer-logo" class="no-padding" src="data:image/png;base64, {{data.From.Logo.DataBase64}}" />
+                    </div>
+                    <div class="container address column">
+                        <div class="Name">{{data.From.Name}}</div>
+                        <div class="street">{{data.From.Address1}}</div>
+                        <div class="street"> {{data.From.Address2}}</div>
+                        <div class="cityline">{{data.From.City}} {{data.From.State}}, {{data.From.Zip}}</div>
+                    </div>
+                </div>
+                <div class="container flex-1 to">
+                    <div class="logo container">
+                        Client
+                    </div>
+                    <div class="container address column">
+                        <div class="row">
+                            <div class="col flex-1">
+                                <div class="Name">{{data.Carrier.Name}}</div>
+                                <div class="street">{{data.Carrier.Address1}}</div>
+                                <div class="street"> {{data.Carrier.Address2}}</div>
+                                <div class="cityline">{{data.Carrier.City}} {{data.Carrier.State}}, {{data.Carrier.Zip}}</div>
+                                <div class="street"> {{data.Carrier.Phone}}</div>
+                            </div>
+                            <div class="col flex-1">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container summary flex-1 right column">
+                <div class="row invoice-number">Load Confirmation</div>
+                <div class="row">
+                    <div class="col flex-1">Load #:</div>
+                    <div class="col flex-1">{{data.LoadNumner}}</div>
+                </div>
+                <div class="row">
+                    <div class="col flex-1">Date:</div>
+                    <div class="col flex-1">{{data.DateCreated}}</div>
+                </div>
+                <div class="row">
+                    <div class="col flex-1">Equipment:</div>
+                    <div class="col flex-1">{{data.LoadInformation.EquipmentType}}</div>
+                </div>
+                <div class="row">
+                    <div class="col flex-1">Weight:</div>
+                    <div class="col flex-1">{{data.LoadInformation.Weight}}</div>
+                </div>
+                <div class="row">
+                    <div class="col flex-1">Commodity:</div>
+                    <div class="col flex-1">{{data.LoadInformation.Commodity}}</div>
+                </div>
+                <div class="row">
+                    <div class="col flex-1">Distance:</div>
+                    <div class="col flex-1">{{data.Distance}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="container row">
+            <div class="col flex-1">
+                <div class="row">
+                    Notes and References
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col flex-1">
+                        Notes: 
+                    </div>
+                    <div class="col flex-4">
+                        {{data.Notes}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col flex-1">
+                        Reference(s): 
+                    </div>
+                    <div class="col flex-4">
+                        {{data.ReferenceNumbers}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container row stops">
+            <div class="col flex-1">
+                <div class="row">
+                    Stops / Actions
+                </div>
+                <hr>
+                <div class="row header" style="text-align: center;">
+                    <div class="col index">#</div>
+                    <div class="col flex-1">Action</div>
+                    <div class="col flex-3">Date / Time</div>
+                    <div class="col flex-3">Location</div>
+                    <div class="col flex-3">Contact</div>
+                </div>
+                {{#each data.Stops}}
+                    <div class="row bordered">
+                        <div class="col border-right index">
+                            <div class="flex-1"></div>
+                            <div class="flex-1">
+                                {{inc @index}}
+                            </div>
+                            <div class="flex-1"></div>
+                        </div>
+                        <div class="col flex-11">
+                            <div class="row border-bottom">
+                                <div class="col flex-1 border-right centered-col">
+                                    <div class="flex-1"></div>
+                                    <div>{{this.Action}}</div>
+                                    <div class="flex-1"></div>
+                                </div>
+                                <div class="col flex-3 border-right centered-col">
+                                    <div class="flex-1"></div>
+                                    <div>{{formatDate this.DateScheduledStart "MM/DD/YY HH:mm"}}</div>
+                                    <div class="flex-1"></div>
+                                </div>
+                                <div class="col flex-3 pad-sides border-right">
+                                    <div class="row">
+                                        {{this.Location.Name}}
+                                    </div>
+                                    <div class="row">
+                                        {{this.Location.Line1}}
+                                    </div>
+                                    <div class="row">
+                                        {{this.Location.City}}, {{this.Location.State}} {{this.Location.Zip}}
+                                    </div>
+                                </div>
+                                <div class="col flex-3 pad-sides">
+                                    <div class="row">
+                                        Phone: {{this.Location.PhoneNumber}}
+                                    </div>
+                                    <div class="row">
+                                        Fax: {{this.Location.FaxNumber}}
+                                    </div>
+                                    <div class="row">
+                                        Emai: {{this.Location.Email}}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col pad-sides">
+                                    <div class="row">Reference #s:{{this.ReferenceNumbers}}</div>
+                                    <div class="row">Cargo: {{this.CargoDescription}}</div>
+                                    <div class="row">Notes: {{this.LocationNotes}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {{/each}}
+            </div>
+        </div>
+        <div class="container row">
+            <div class="col flex-1">
+                <div class="row">
+                    Pay Items
+                </div>
+                <hr>
+                <div class="row header">
+                    <div class="col flex-1">Description</div>
+                    <div class="col flex-3">Notes</div>
+                    <div class="col flex-3">Quantity</div>
+                    <div class="col flex-3">Rate</div>
+                    <div class="col flex-3">Ammount</div>
+                </div>
+                {{#each data.PaymentItems}}
+                    <div class="row">
+                        <div class="col flex-1">{{this.Description}}</div>
+                        <div class="col flex-3">{{this.Unit}}</div>
+                        <div class="col flex-3">{{this.Quantity}}</div>
+                        <div class="col flex-3">${{this.UnitPrice}}</div>
+                        <div class="col flex-3">${{this.Total}}</div>
+                    </div>
+                {{/each}}
+            </div>
+        </div>
+        <div class="container row">
+            <div class="column flex-1">
+                <hr>
+                <div class="row">
+                    <div class="column flex-2 border-bottom">
+                        <img src="" alt="" class="signature" id="driver-signature" style="max-width: 100%">
+                    </div>
+                    <div id="signature-date" class="column flex-1 border-bottom center bottom">
+                    </div>
+                    <div id="signature-name" class="column flex-2 border-bottom right">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="column flex-2">
+                        Driver Signature
+                    </div>
+                    <div class="column flex-1 center">
+                        Date
+                    </div>
+                    <div class="column flex-2 right">
+                        Driver Name
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var data =  tryParseJSON(decodeURI("{{ clientData }}"));
+
+        /*
+         * Place client side scripts here
+         */
+        addSrc(getElementById('issuer-logo'), `data:image/png;base64, ${data.From.Logo.DataBase64}` );
+
+        for (var i = 0; data.Signatures &&  i < data.Signatures.length; i++) {
+            if (data.Signatures[i].SignatureName === 'Carrier') {
+                var ts = new Date(Date.parse(data.Signatures[i].Timestamp));
+                addSrc(getElementById('driver-signature'), `${data.Signatures[i].SignatureBase64}` );
+                getElementById('signature-name').textContent = data.Signatures[i].PrintedName;
+                getElementById('signature-date').textContent = `${ts.getMonth()}/${ts.getDate()}/${ts.getFullYear()}`;
+                break;
+            }
+        }
+        
+        if (data.Signatures.length)
+            addSrc(getElementById('driver-signature'), `${data.Signatures[0].SignatureBase64}` );
+
+        function replaceAll(str, find, replace) {
+            return str.replace(new RegExp(find, 'g'), replace);
+        }
+        
+        function getElementById(id) {
+            return document.getElementById(id);
+        }
+        
+        function checkTheBox(element) {
+            element.setAttribute("checked", "checked");
+            element.checked = true;
+        }
+
+        function addSrc(element, content) {
+            element.setAttribute('src', replaceAll(content, "&#x3D;", '='));
+        }
+
+        function tryParseJSON (jsonString){
+            try {
+                var o = JSON.parse(jsonString);
+
+                if (o && typeof o === "object") {
+                    return o;
+                }
+            }
+            catch (e) { }
+            return null;
+        }
+    </script>
+</body>
+</html>
+

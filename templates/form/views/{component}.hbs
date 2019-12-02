@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="/{name}-styles.css"/>
+    <title>{{title}}</title>
+</head>
+<body>
+    <!-- Form html here --> 
+    {{title}} Template Works!
+    <script>
+        var data =  tryParseJSON(decodeURI("{{ clientData }}"));
+
+        /*
+         * Place client side scripts here
+         */
+
+        function replaceAll(str, find, replace) {
+            return str.replace(new RegExp(find, 'g'), replace);
+        }
+        
+        function getElementById(id) {
+            return document.getElementById(id);
+        }
+        
+        function checkTheBox(element) {
+            element.setAttribute("checked", "checked");
+            element.checked = true;
+        }
+
+        function addSrc(element, content) {
+            element.setAttribute('src', replaceAll(content, "&#x3D;", '='));
+        }
+
+        function tryParseJSON (jsonString){
+            try {
+                var o = JSON.parse(jsonString);
+
+                if (o && typeof o === "object") {
+                    return o;
+                }
+            }
+            catch (e) { }
+            return null;
+        }
+    </script>
+</body>
+</html>
+

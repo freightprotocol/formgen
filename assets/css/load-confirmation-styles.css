@@ -1,0 +1,207 @@
+html, 
+body {
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+}
+
+html, body, .footer {
+    margin-bottom: 0px !important;
+    padding-bottom: 0px !important;
+}
+
+table {
+    width: 100%;
+    max-width: calc(100vw - 120px);
+    margin: 40px;
+    border-collapse: collapse; 
+}
+
+th, td {
+    padding: 5px 0;
+    border-bottom: 1px solid gray;
+}
+
+.side-padded {
+    padding: 0 30px !important;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.flex-2 {
+  flex: 2;
+}
+
+.flex-3 {
+  flex: 3;
+}
+
+.flex-11 {
+  flex: 11;
+}
+
+.index {
+  min-width: 32px; 
+  text-align: center; 
+  display: flex;
+  flex-flow: column;
+}
+
+.centered-col {
+  text-align: center; 
+  display: flex;
+  flex-flow: column;
+}
+
+.pad-sides {
+  padding: 0px 5px;
+}
+
+.container {
+  display: flex;
+  padding: 5px;
+}
+
+.column {
+  flex-direction: column;
+  /* justify-content: space-between; */
+}
+
+.no-padding {
+  padding: 0px;
+}
+
+.bordered {
+  border: 1px solid gray;
+}
+
+.border-right {
+  border-right: 1px solid black;
+}
+
+.border-left {
+  border-left: 1px solid black;
+}
+
+.border-top {
+  border-top: 1px solid black;
+}
+
+.border-bottom {
+  border-bottom: 1px solid black;
+}
+
+.right {
+  text-align: right;
+  justify-content: flex-end;
+}
+
+.center {
+  text-align: right;
+  justify-content: center;
+}
+
+.bottom {
+  justify-content: flex-end;
+}
+
+#driver-signature {
+  width: 20vw;
+}
+
+.black {
+  color: black;
+}
+
+.summary {
+  justify-content: flex-start;
+  flex: 1;
+  margin-right: 25px;
+}
+
+.invoice-number {
+  font-size: 22px;
+  color: gray;
+}
+
+.header {
+    max-height: 300px;
+}
+
+.header div {
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+.logo {
+  height: 100%;
+  border-right: 2px solid gray;
+  text-align: right;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 32px;
+  color: gray;
+  padding-right: 20px;
+  flex: 1;
+  min-width: 175px;
+  max-width: 175px;
+}
+
+.address {
+  padding-left: 20px;
+  flex: 2;
+}
+
+.logo img {
+    max-height: 94px;
+}
+
+.parties {
+  flex: 2;
+}
+
+.line-items {
+  
+}
+
+.footer {
+    align-self: flex-start;
+    max-height: 64px;
+    padding: 30px;
+}
+
+.totals {
+    justify-content: flex-start !important;
+    flex: 1;
+    max-height: 150px;
+    font-size: 20px;
+    margin: 45px;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+}
+
+.row {
+  display: flex;
+  flex-flow: row;
+  width: 100%;
+}
+
+.column {
+  display: flex;
+  flex-flow: column;
+}
+
+.summary .row .col { 
+  text-align: left;
+  font-size: 12px;
+}
+  
+.invoice-number {
+  font-size: 14px;
+}
+
+.stops {
+  font-size: 12px;
+}

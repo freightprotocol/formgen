@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="/bol-styles.css"/>
+    <title>{{title}}</title>
+</head>
+<body>
+    <div class="party-information">
+        <div class="title boxed">
+            <div class='title-bar clearfix'>
+                <div class='left align-left small-text medium-line bol-date' style="margin-left: 5px; margin-right: auto;">Date: </div>
+                <div class='left align-middle center'>BILL OF LADING</div>
+                <div class='right align-right small-text medium-line' style="magin-left: auto; margin-right: 5px">Page: 1</div>
+            </div>
+        </div>
+        <div class="parties left-side left boxed">
+            <div class="ship-from-section boxed">
+                <div class='section-header small-text'>SHIP FROM</div>
+                <div class="flex-container full-width">
+                    <div class="flex-3">
+                        <table class="medium-text">
+                            <tr><td>Name:</td><td class="small-text">{{data.ShipFrom.Name}}</td></tr>            
+                            <tr><td>Address:</td><td class="small-text">{{data.ShipFrom.Line1}} {{data.shipFrom.Line2}}</td></tr>
+                            <tr><td>City/State/Zip:</td><td class="small-text">{{data.ShipFrom.City}} {{data.ShipFrom.State}} {{data.ShipFrom.Zip}}</td></tr>
+                            <tr><td>SID #:</td><td class="small-text">{{data.ShipFrom.Id}}</td></tr>
+                        </table>
+                    </div>
+                    <div class="flex-1 flex-vert small-text"> 
+                        <div class="flex-2"></div>
+                        <div class="flex-1 align-right">FOB: <input id="ship-from-fob" type="checkbox"/></div>
+                    </div>
+                </div>
+            </div>
+            <div class="ship-to-section boxed">
+                <div class='section-header small-text'>SHIP TO</div>
+                <div class="flex-container full-width">
+                    <div class="flex-3">
+                        <table class="medium-text">
+                            <tr><td>Name:</td><td class="small-text">{{data.ShipTo.Name}}</td></tr>            
+                            <tr><td>Address:</td><td class="small-text">{{data.ShipTo.Line1}} {{shipTo.Line2}}</td></tr>
+                            <tr><td>City/State/Zip:</td><td class="small-text">{{data.ShipTo.City}} {{data.ShipTo.State}} {{data.shipTo.Zip}}</td></tr>
+                            <tr><td>CID #:</td><td class="small-text">{{data.ShipTo.Id}}</td></tr>
+                        </table>
+                    </div>
+                    <div class="flex-1 flex-vert small-text"> 
+                        <div class="flex-1">Location #: {{data.ShipToLocationNumber}}</div>
+                        <div class="flex-1"></div>
+                        <div class="flex-1 align-right">FOB: <input id="ship-to-fob" type="checkbox" /></div>
+                    </div>
+                </div>
+            </div>
+            <div class="bill-to-section boxed">
+                <div class='section-header small-text'>3RD PARTY BILL TO</div>
+                <table class="medium-text">
+                    <tr><td>Name:</td><td class="small-text">{{data.ThirdPartyChargesTo.Name}}</td></tr>            
+                    <tr><td>Address:</td><td class="small-text">{{data.ThirdPartyChargesTo.Line1}} {{data.thirdPartyChargesTo.Line2}}</td></tr>
+                    <tr><td>City/State/Zip:</td><td class="small-text">{{data.ThirdPartyChargesTo.City}} {{data.ThirdPartyChargesTo.State}} {{data.ThirdPartyChargesTo.Zip}}</td></tr>
+                </table>
+                <hr style="margin: 0; padding: 0;" />
+                <div class="small-text" style="padding: 0px 5px">
+                    <div>Special Instructions:</div>
+                    <div id="third-party-instructions"></div>
+                </div>
+            </div>
+        </div>
+        <div class="barcode-and-trailers right-side right boxed">
+            <div class="bol-number-section boxed" style="padding: 5px">
+                Bill of Lading #: {{data.BolNumber}}
+                <img id="bol-barcode" style="max-height: 70px; max-width: 100%" />
+            </div>
+            <div class="driver-details-section boxed">
+                <table>
+                    <tr><td>Carrier Name:</td><td class="small-text">{{data.Carrier.Name}}</td></tr>
+                    <tr><td>Trailer Number:</td><td class="small-text">{{data.TrailerNumber}}</td></tr>
+                    <tr><td>Seal Number(s):</td><td class="small-text">{{data.SealNumbers}}</td></tr>
+                </table>
+            </div>
+            <div class="scac-pro-number-section boxed">
+                <table>
+                    <tr>
+                        <td>SCAC:</td>
+                        <td>{{data.Carrier.SCACNumber}}</td>
+                    </tr>
+                    <tr>
+                        <td>Pro Number:</td>
+                        <td>{{data.ProNumber}}</td>
+                    </tr>
+                </table>
+                <img id="scac-pro-barcode" src="{{data.ScacProBarcodeBase64}}" />
+            </div>
+            <div class="terms-section boxed" style="padding: 5px">
+                Freight Charge Terms: <span class="small-text">(freight charges are prepaid unless marked otherwise)</span>
+                <br />
+                <br />
+                <span class="third align-left small-text">
+                    Prepaid: <input id="freight-terms-prepaid" type="checkbox"> 
+                </span>
+                <span class="third align-middle small-text">
+                    Collect: <input id="freight-terms-collect" type="checkbox"> 
+                </span>
+                <span class="third align-right small-text">
+                    3rd Party: <input id="freight-terms-third-party" type="checkbox"> 
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="customer-order-info">
+        <div class="content full-width boxed">
+            <div class="ship-from-section">
+                <div class='section-header small-text'>CUSTOMER ORDER INFORMATION</div>
+                <table class="data-table small-text">
+                    <tr>
+                    <th>CUSTOMER ORDER NUMBER</th> 
+                    <th># PKGS</th> 
+                    <th>WEIGHT</th> 
+                    <th colspan="2">PALLET/SLIP</th> 
+                    <th>ADDITIONAL SHIPPER INFO</th> 
+                    </tr>
+                    <tr>
+                    <td id="order-info-order-numner-0" class="align-middle"></td> 
+                    <td id="order-info-number-pkgs-0"></td>
+                    <td id="order-info-weight-0"></td> 
+                    <td id="order-info-pallet-yes-0" class="align-middle"><div>Y</div></td> 
+                    <td id="order-info-pallet-no-0" class="align-middle"><div>N</div></td> 
+                    <td id="order-info-additional-info-0"></td> 
+                    </tr>
+                    <tr>
+                    <td id="order-info-order-numner-1" class="align-middle"></td> 
+                    <td id="order-info-number-pkgs-1"></td> 
+                    <td id="order-info-weight-1"></td> 
+                    <td id="order-info-pallet-yes-1" class="align-middle"><div>Y</div></td> 
+                    <td id="order-info-pallet-no-1" class="align-middle"><div>N</div></td> 
+                    <td id="order-info-additional-info-1"></td> 
+                    </tr>
+                    <tr>
+                    <td id="order-info-order-numner-2" class="align-middle"></td> 
+                    <td id="order-info-number-pkgs-2"></td> 
+                    <td id="order-info-weight-2"></td> 
+                    <td id="order-info-pallet-yes-2" class="align-middle"><div>Y</div></td> 
+                    <td id="order-info-pallet-no-2" class="align-middle"><div>N</div></td> 
+                    <td id="order-info-additional-info-2"></td> 
+                    </tr>
+                    <tr>
+                    <td id="order-info-order-numner-3" class="align-middle"></td> 
+                    <td id="order-info-number-pkgs-3"></td> 
+                    <td id="order-info-weight-3"></td> 
+                    <td id="order-info-pallet-yes-3" class="align-middle"><div>Y</div></td> 
+                    <td id="order-info-pallet-no-3" class="align-middle"><div>N</div></td> 
+                    <td id="order-info-additional-info-3"></td> 
+                    </tr>
+                    <tr>
+                    <td id="order-info-order-numner-4" class="align-middle"></td> 
+                    <td id="order-info-number-pkgs-4"></td> 
+                    <td id="order-info-weight-4"></td> 
+                    <td id="order-info-pallet-yes-4" class="align-middle"><div>Y</div></td> 
+                    <td id="order-info-pallet-no-4" class="align-middle"><div>N</div></td> 
+                    <td id="order-info-additional-info-4"></td> 
+                    </tr>
+                    <tr>
+                    <td>GRAND TOTAL</td> 
+                    <td id="order-info-pkgs-total"></td> 
+                    <td id="order-info-weight-total"></td> 
+                    <td class="blocked-col"></td> 
+                    <td class="blocked-col"></td> 
+                    <td class="blocked-col"></td> 
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+   
+    <div class="carrier-info" id="carrier-information">
+        <div class="content full-width boxed">
+            <div class="ship-from-section">
+                <div class='section-header small-text'>CARRIER INFORMATION</div>
+                <table class="data-table small-text no-vert-padding">
+                    <tr>
+                    <th colspan="2">HANDLING UNIT</th> 
+                    <th colspan="2">PACKAGE</th> 
+                    <th rowspan="2">WEIGHT</th> 
+                    <th rowspan="2">H.M.</th> 
+                    <th rowspan="2">COMMODITY DESCRIPTION</th> 
+                    <th colspan="2">PACKAGE</th> 
+                    </tr>
+                    <tr>
+                    <th>QTY</th> 
+                    <th>TYPE</th> 
+                    <th>QTY</th> 
+                    <th>TYPE</th>
+                    <th>NMFC #</th> 
+                    <th>CLASS</th> 
+                    </tr>
+                    <tr>
+                    <td id="carrier-info-handling-qty-0">&nbsp;</td>
+                    <td id="carrier-info-handling-type-0" class="align-middle"></td>
+                    <td id="carrier-info-pkg-qty-0"></td>
+                    <td id="carrier-info-pkg-type-0" class="align-middle"></td>
+                    <td id="carrier-info-weight-0"></td>
+                    <td id="carrier-info-hazmat-0" class="align-middle"></td> 
+                    <td id="carrier-info-description-0"></td>
+                    <td id="carrier-info-nmfc-number-0" class="align-middle"></td>
+                    <td id="carrier-info-nmfc-class-0" class="align-middle"></td>
+                    </tr>
+                    <tr>
+                    <td id="carrier-info-handling-qty-1">&nbsp;</td>
+                    <td id="carrier-info-handling-type-1" class="align-middle"></td>
+                    <td id="carrier-info-pkg-qty-1"></td>
+                    <td id="carrier-info-pkg-type-1" class="align-middle"></td>
+                    <td id="carrier-info-weight-1"></td>
+                    <td id="carrier-info-hazmat-1" class="align-middle"></td> 
+                    <td id="carrier-info-description-1"></td>
+                    <td id="carrier-info-nmfc-number-1" class="align-middle"></td>
+                    <td id="carrier-info-nmfc-class-1" class="align-middle"></td>
+                    </tr>
+                    <tr>
+                    <td id="carrier-info-handling-qty-2">&nbsp;</td>
+                    <td id="carrier-info-handling-type-2" class="align-middle"></td>
+                    <td id="carrier-info-pkg-qty-2"></td>
+                    <td id="carrier-info-pkg-type-2" class="align-middle"></td>
+                    <td id="carrier-info-weight-2"></td>
+                    <td id="carrier-info-hazmat-2" class="align-middle"></td> 
+                    <td id="carrier-info-description-2"></td>
+                    <td id="carrier-info-nmfc-number-2" class="align-middle"></td>
+                    <td id="carrier-info-nmfc-class-2" class="align-middle"></td>
+                    </tr>
+                    <tr>
+                    <td id="carrier-info-handling-qty-3">&nbsp;</td>
+                    <td id="carrier-info-handling-type-3" class="align-middle"></td>
+                    <td id="carrier-info-pkg-qty-3"></td>
+                    <td id="carrier-info-pkg-type-3" class="align-middle"></td>
+                    <td id="carrier-info-weight-3"></td>
+                    <td id="carrier-info-hazmat-3" class="align-middle"></td> 
+                    <td id="carrier-info-description-3"></td>
+                    <td id="carrier-info-nmfc-number-3" class="align-middle"></td>
+                    <td id="carrier-info-nmfc-class-3" class="align-middle"></td>
+                    </tr>
+                    <tr>
+                    <td id="carrier-info-handling-qty-4">&nbsp;</td>
+                    <td id="carrier-info-handling-type-4" class="align-middle"></td>
+                    <td id="carrier-info-pkg-qty-4"></td>
+                    <td id="carrier-info-pkg-type-4" class="align-middle"></td>
+                    <td id="carrier-info-weight-4"></td>
+                    <td id="carrier-info-hazmat-4" class="align-middle"></td> 
+                    <td id="carrier-info-description-4"></td>
+                    <td id="carrier-info-nmfc-number-4" class="align-middle"></td>
+                    <td id="carrier-info-nmfc-class-4" class="align-middle"></td>
+                    </tr>
+                    <tr>
+                    <td id="carrier-info-units-total"></td> 
+                    <td class="blocked-col"></td> 
+                    <td id="carrier-info-pkgs-total"></td> 
+                    <td class="blocked-col"></td> 
+                    <td id="carrier-info-weight-total"></td> 
+                    <td class="blocked-col align-middle"></td> 
+                    <td class="align-middle">GRAND TOTAL</td> 
+                    <td class="blocked-col"></td> 
+                    <td class="blocked-col"></td> 
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="signing-details full-width">
+        <div class="content full-width boxed small-text">
+            <div class="flex-container full-width">
+                <div class='boxed flex-6 footer-box' style="font-size: 10px;">
+                    Where the rate is dependent on value, shippers are required to 
+                    state specifically in writing the agreed or declared value of 
+                    the property as follows: Noting a value is not a request for 
+                    Additional Cargo Liability under OD Rules 100, Item 574.
+                    “The agreed or declared value of the property is specifically 
+                    stated by the shipper to be not exceeding
+                    __________________ per ___________________.” 
+                </div><!--
+            --><div class='boxed flex-4 footer-box'>
+                    COD Amount: $ {{data.CODAmount}}
+                    <br />
+                    Fee Terms: 
+                    Collect: <input id="fee-terms-collect" type="checkbox"/ > 
+                    Prepaid: <input id="fee-terms-prepaid" type="checkbox"/ >
+                    <br />
+                    Personal/company check NOT acceptable 
+                    <input id="fee-terms-check-acceptance" type="checkbox"/ >
+                </div>
+            </div>
+            <div class="full-width">
+                <div class='boxed full-width footer-box footer-box-short'>
+                    NOTE - Liability Limitation applies. See OD Rules 100, Items 574
+                    and 594.
+                </div>
+            </div>
+            <div class="flex-container full-width">
+                <div class='boxed flex-6 footer-box' style="font-size: 8px;">
+                    RECEIVED, subject to the rates, classifications and rules that 
+                    have been established by the Carrier and are available on request
+                    to the Shipper (Shipper defined in 49 U.S.C.A. § 13102(13)(c)), 
+                    and to all applicable state and federal regulations. Shipper 1)
+                    warrants it has read all applicable contract(s) or Carrier’s 
+                    applicable tariff(s) and the limitation of liability provisions 
+                    set forth therein; and 2) has actual knowledge of and accepts the
+                    applicable contract or tariff terms, including the limits on carrier
+                    liability.
+                    Carriers’ tariff(s), including OD Rules 100, take precedence in 
+                    the event of any terms or conditions conflicts. 
+                </div><!--
+            --><div class='boxed flex-4 footer-box' style="font-size: 10px;">
+                    {{!-- The carrier shall not make delivery of this shipment without 
+                    payment of
+                    freight and all other lawful charges. --}}
+                    <div style="display: flex">
+                        <div class="flex-2">
+                            <br />
+                            <br />
+                            Consignee Signature
+                        </div>
+                        <div class="flex-4">
+                            <img style="height: 40px; max-width: 250px;" id="signature-pay-before-ship"></img>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flex-container full-width signature-row">
+                <div class='boxed footer-box flex-4'>
+                    <div>SHIPPER SIGNATURE / DATE</div>
+                    <div style="font-size: 6px">
+                        This is to certify that the above named materials are properly classified,
+                        described, packaged, marked and labeled, and are in proper condition for
+                        transportation according to the applicable regulations of the U.S. DOT
+                    </div>
+                    <div style="height: 0px; display: flex">
+                        <img style="height: 40px; max-width: 65%;" id="signature-shipper"></img>
+                            <span id="shipper-sign-date"></span>
+                    </div>
+                </div><!--
+            --><div class='boxed footer-box flex-5' style="display: flex; font-size: 9px">
+                    <div class="flex-2">
+                        Trailer Loaded:
+                        <br /> 
+                        <input id="loaded-by-shipper" type="checkbox" /> By Shipper
+                        <br />
+                        <input id="loaded-by-driver" type="checkbox" /> By Driver
+                    </div>
+                    <div class="flex-3">
+                        Freight Counted:
+                        <br /> 
+                        <input id="counted-by-shipper" type="checkbox" /> By Shipper
+                        <br />
+                        <input id="counted-by-driver-pallet" type="checkbox" /> By Driver/pallets said to contain
+                        <br />
+                        <input id="counted-by-driver-pieces" type="checkbox" /> By Drive/Pieces
+                    </div>
+                </div><!--
+            --><div class='boxed footer-box flex-4 flex-vert' style="height: 80px;">
+                    <div class="flex-1">
+                        <div>CARRIER SIGNATURE / DATE</div>
+                        <div style="font-size: 6px">
+                            Carrier acknowledges receipt of packages and required placards. Carrier
+                            certifies emergency response information was made available and/or
+                            carrier has the U.S. DOT emergency response guidebook or equivalent
+                            documentation in the vehicle
+                        </div>
+                        <div style="height: 0px; display:flex">
+                            <img style="height: 40px; max-width: 65%;" id="signature-carrier" ></img>
+                            <span id="carrier-sign-date"></span>
+                        </div>
+                    </div>
+                    <div class="flex-1" style="font-size: 7px">Property described above is received in good order, except as noted</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{#if additionalPages.length}}
+        <div style="height: 13px"></div>
+    {{/if}}
+    {{#each additionalPages}}
+        {{> bol-page2}}
+    {{/each}}
+    <script>
+        //
+        var data =  tryParseJSON(decodeURI("{{clientData}}"));
+
+        if (data.ShipFrom.Fob) {
+            checkTheBox(getElementById("ship-from-fob"));
+        }
+        
+        if (data.ShipTo.Fob) {
+            checkTheBox(getElementById("ship-to-fob"));
+        }
+        
+        if (data.FreightChargeTerms.Collect) {
+            checkTheBox(getElementById("freight-terms-collect"));
+        }
+        
+        if (data.FreightChargeTerms.Prepaid) {
+            checkTheBox(getElementById("freight-terms-prepaid"));
+        }
+        
+        if (data.FreightChargeTerms.ThirdParty) {
+            checkTheBox(getElementById("freight-terms-third-party"));
+        }
+        
+        if (data.FeeTerms.Collect) {
+            checkTheBox(getElementById("fee-terms-collect"));
+        }
+        
+        if (data.FeeTerms.Prepaid) {
+            checkTheBox(getElementById("fee-terms-prepaid"));
+        }
+        
+        if (data.FeeTerms.CustomerCheckAvailable === false) {
+            checkTheBox(getElementById("fee-terms-check-acceptance"));
+        }
+        
+        if (data.TrailerLoadedByShipper) {
+            checkTheBox(getElementById("loaded-by-shipper"));
+        }
+        
+        if (data.TrailerLoadedByDriver) {
+            checkTheBox(getElementById("loaded-by-driver"));
+        }
+        
+        if (data.CountedByShipper) {
+            checkTheBox(getElementById("counted-by-shipper"));
+        }
+        
+        if (data.CountedByDriverPallets) {
+            checkTheBox(getElementById("counted-by-driver-pallet"));
+        }
+            
+        if (data.CountedByDriverPieces) {
+            checkTheBox(getElementById("counted-by-driver-pieces"));
+        }
+        if (data.Signatures) {
+            for (var i = 0; i < data.Signatures.length; i++){
+                var item = data.Signatures[i];
+                if (item.SignatureName == 'Carrier') {
+                    addSrc(getElementById('signature-carrier'), item.SignatureBase64);
+                    getElementById('carrier-sign-date').innerText = item.Timestamp.split('T')[0];
+                } 
+                if (item.SignatureName == 'Shipper') {
+                    addSrc(getElementById('signature-shipper'), item.SignatureBase64);
+                    getElementById('shipper-sign-date').innerText = item.Timestamp.split('T')[0];
+                } 
+                if (item.SignatureName == 'Delivery') {
+                    addSrc(getElementById('signature-pay-before-ship'), item.SignatureBase64);
+                } 
+            }
+        }
+
+        if(data.BolBarcodeBase64) {
+            addSrc(getElementById('bol-barcode'), data.BolBarcodeBase64);
+        }
+        if (data.LoadInformation.Mode == 2) {
+            getElementById('carrier-information').style.display = 'none';
+        }
+        if (data.ThirdPartySpecialInstructions) {
+            getElementById('third-party-instructions').innerText = data.ThirdPartySpecialInstructions;
+        }
+
+        if (data.ShipmentDate) {
+            var elements = document.getElementsByClassName('bol-date');
+            for(var i = 0; i < elements.length; i++) {
+                elements[i].innerText = "Date: " + data.ShipmentDate.split('T')[0];
+            }
+        }
+
+        if (data.BolNumber) {
+            var elements = document.getElementsByClassName('bol-number');
+            for(var i = 0; i < elements.length; i++) {
+                elements[i].innerText = "BoL Number: " + data.BolNumber;
+            }
+        }
+        
+        for(var i = 0; i < 5 && i < data.CustomerOrderInfo.length; i++) {
+            getElementById('order-info-order-numner-' + i).innerText = data.CustomerOrderInfo[i].OrderNumber;
+            getElementById('order-info-number-pkgs-' + i).innerText = data.CustomerOrderInfo[i].Quantity;
+            getElementById('order-info-weight-' + i).innerText = data.CustomerOrderInfo[i].Weight;
+            // data.customerOrderInfo[i].palletSlip
+            if (data.CustomerOrderInfo[i].PalletSlip) {
+                getElementById('order-info-pallet-yes-' + i).children[0].classList.add('circled');
+            } else {
+                getElementById('order-info-pallet-no-' + i).children[0].classList.add('circled');
+            }
+            getElementById('order-info-additional-info-' + i).innerText = data.CustomerOrderInfo[i].AdditionalShipperInfo;
+        }
+        
+        for(var i = 0; i < 5 && i < data.CarrierInfo.length; i++) {
+            getElementById('carrier-info-handling-qty-' + [i]).innerText = data.CarrierInfo[i].HandlingUnitQty;
+            getElementById('carrier-info-handling-type-' + [i]).innerText = data.CarrierInfo[i].HandlingUnitType;
+            getElementById('carrier-info-pkg-qty-' + [i]).innerText = data.CarrierInfo[i].PackageQty;
+            getElementById('carrier-info-pkg-type-' + [i]).innerText = data.CarrierInfo[i].PackageType;
+            getElementById('carrier-info-weight-' + [i]).innerText = data.CarrierInfo[i].Weight;
+            getElementById('carrier-info-hazmat-' + [i]).innerText = !!data.CarrierInfo[i].HM ? 'X' : '';
+            getElementById('carrier-info-description-' + [i]).innerText = data.CarrierInfo[i].Description;
+            getElementById('carrier-info-nmfc-number-' + [i]).innerText = data.CarrierInfo[i].NMFCNumber;
+            getElementById('carrier-info-nmfc-class-' + [i]).innerText = data.CarrierInfo[i].NMFCClass;
+        }
+
+        setCustomerOrderTotals();
+        setCarrierInfoTotals();
+
+        function replaceAll(str, find, replace) {
+            return str.replace(new RegExp(find, 'g'), replace);
+        }
+        
+        function setCustomerOrderTotals() {
+            var totalWeight = 0;
+            var totalPkgs = 0;
+            for(var i = 0; i < data.CustomerOrderInfo.length; i++) {
+                totalWeight += data.CustomerOrderInfo[i].Weight;
+                totalPkgs += data.CustomerOrderInfo[i].Quantity;
+            }
+            
+            getElementById('order-info-weight-total').innerText = totalWeight;
+            getElementById('order-info-pkgs-total').innerText = totalPkgs;
+        }
+        
+        function setCarrierInfoTotals() {
+            var totalWeight = 0;
+            var totalPkgs = 0;
+            var totalUnits = 0;
+            for(var i = 0; i < data.CarrierInfo.length; i++) {
+                totalWeight += data.CarrierInfo[i].Weight;
+                totalPkgs += data.CarrierInfo[i].PackageQty;
+                totalUnits += data.CarrierInfo[i].HandlingUnitQty;
+            }
+            
+            getElementById('carrier-info-weight-total').innerText = totalWeight;
+            getElementById('carrier-info-pkgs-total').innerText = totalPkgs;
+            getElementById('carrier-info-units-total').innerText = totalUnits;
+        }
+        
+        function getElementById(id) {
+            return document.getElementById(id);
+        }
+        
+        function checkTheBox(element) {
+            element.setAttribute("checked", "checked");
+            element.checked = true;
+        }
+
+        function addSrc(element, content) {
+            element.setAttribute('src', replaceAll(content, "&#x3D;", '='));
+        }
+
+        function tryParseJSON (jsonString){
+            try {
+                var o = JSON.parse(jsonString);
+
+                if (o && typeof o === "object") {
+                    return o;
+                }
+            }
+            catch (e) { }
+            return null;
+        }
+    </script>
+</body>
+</html>
+
